@@ -14,7 +14,7 @@ import SignUp from './containers/SignUp';
 import FindPassword from './containers/FindPassword';
 import FindId from './containers/FindId';
 import CreatePost from './containers/CreatePost';
-
+import ProfessorLecture from './containers/ProfessorLecture';
 class App extends Component {
   render() {
     return (
@@ -30,6 +30,7 @@ class App extends Component {
             <Route path="/findId" component={FindId} />
             <Route path="/findPassword" component={FindPassword} />
             <Route path="/createPost/:postType?" component={CreatePost}/>
+            <Route path="/professor/lecture" component={ProfessorLecture}/>
           </Switch>
         </div>
       </Router>
