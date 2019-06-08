@@ -15,6 +15,7 @@ import FindPassword from './containers/FindPassword';
 import FindId from './containers/FindId';
 import CreatePost from './containers/CreatePost';
 import ProfessorLecture from './containers/ProfessorLecture';
+import ProfessorLectureDetail from './containers/ProfessorLectureDetail';
 class App extends Component {
   render() {
     return (
@@ -31,6 +32,7 @@ class App extends Component {
             <Route path="/findPassword" component={FindPassword} />
             <Route path="/createPost/:postType?" component={CreatePost}/>
             <Route path="/professor/lecture" component={ProfessorLecture}/>
+            <Route path="/professor/lecture/:lectureId?/detail" component={ProfessorLectureDetail}/>
           </Switch>
         </div>
       </Router>

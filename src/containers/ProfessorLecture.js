@@ -14,4 +14,4 @@ class ProfessorLecture extends Component {
     }
 }
 
-export default Main;
+export default ProfessorLecture;
