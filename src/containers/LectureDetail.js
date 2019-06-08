@@ -16,7 +16,7 @@ class LectureDetail extends Component {
         const lectureId = this.props.match.params.lectureId;
         console.log(lectureId);
         axios.get(
-            'http://localhost:8080/api/v1/portal/professor/lecture/' + lectureId
+            'http://localhost:9090/api/v1/portal/professor/lecture/' + lectureId
             , {
                 headers: {
                     'token': localStorage.Token,
@@ -47,7 +47,7 @@ class LectureDetail extends Component {
 
     updateLectureDetailCanceled = (lectureDetailId) => {
         axios({
-            url: 'http://localhost:8080/api/v1/portal/professor/lecture/detail/' + lectureDetailId,
+            url: 'http://localhost:9090/api/v1/portal/professor/lecture/detail/' + lectureDetailId,
             method: 'PUT',
             headers : {
                 'token': localStorage.Token,

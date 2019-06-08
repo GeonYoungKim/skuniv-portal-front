@@ -8,7 +8,7 @@ class SignUp extends Component {
         console.log(body);
         axios
             .post(
-                'http://localhost:8080/api/v1/portal/account/professor/signUp'
+                'http://localhost:9090/api/v1/portal/account/professor/signUp'
                 , body
             )
             .then((response) => {
@@ -23,7 +23,7 @@ class SignUp extends Component {
         console.log(body);
         axios
             .post(
-                'http://localhost:8080/api/v1/portal/account/student/signUp'
+                'http://localhost:9090/api/v1/portal/account/student/signUp'
                 , body
             )
             .then((response) => {

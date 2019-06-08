@@ -18,7 +18,7 @@ class AssignmentStudent extends Component {
         this.setState({assignmentName})
 
         axios.get(
-            'http://localhost:8080/api/v1/portal/professor/lecture/assignment/' + assignmentId
+            'http://localhost:9090/api/v1/portal/professor/lecture/assignment/' + assignmentId
             , {
                 headers: {
                     'token': localStorage.Token,

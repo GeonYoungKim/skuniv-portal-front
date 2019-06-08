@@ -22,7 +22,7 @@ class ProfessorLecture extends Component {
         console.log(token);
         console.log(accountType);
         axios.get(
-            'http://localhost:8080/api/v1/portal/professor/semester/' + semesterId + '/lecture'
+            'http://localhost:9090/api/v1/portal/professor/semester/' + semesterId + '/lecture'
             , {
                 headers: {
                     'token': localStorage.Token,
@@ -48,7 +48,7 @@ class ProfessorLecture extends Component {
 
     componentDidMount = () => {
         axios({
-            url: 'http://localhost:8080/api/v1/portal/semester/',
+            url: 'http://localhost:9090/api/v1/portal/semester/',
             method: 'GET'
         }).then((response) => {
             if (response.status === 200) {
@@ -63,7 +63,7 @@ class ProfessorLecture extends Component {
     createLecture(semesterId, body) {
         axios
             .post(
-                'http://localhost:8080/api/v1/portal/professor/semester/' + semesterId + '/lecture'
+                'http://localhost:9090/api/v1/portal/professor/semester/' + semesterId + '/lecture'
                 , body
                 , {
                     headers: {

@@ -16,7 +16,7 @@ class Assignment extends Component {
 
     getAssignmentList = (lectureId) => {
         axios.get(
-            'http://localhost:8080/api/v1/portal/professor/lecture/' + lectureId + '/assignment'
+            'http://localhost:9090/api/v1/portal/professor/lecture/' + lectureId + '/assignment'
             , {
                 headers: {
                     'token': localStorage.Token,
@@ -64,7 +64,7 @@ class Assignment extends Component {
         console.log(this.state.lectureId);
         axios
             .post(
-                'http://localhost:8080/api/v1/portal/professor/lecture/' + this.state.lectureId + '/assignment'
+                'http://localhost:9090/api/v1/portal/professor/lecture/' + this.state.lectureId + '/assignment'
                 , body
                 , {
                     headers: {

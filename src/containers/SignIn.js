@@ -14,7 +14,7 @@ class Login extends Component {
         console.log(body);
         axios
         .post(
-            'http://localhost:8080/api/v1/portal/account/professor/signIn'
+            'http://localhost:9090/api/v1/portal/account/professor/signIn'
             , body
         )
         .then((response) => {
@@ -37,7 +37,7 @@ class Login extends Component {
         console.log(body);
         axios
         .post(
-            'http://localhost:8080/api/v1/portal/account/student/signIn'
+            'http://localhost:9090/api/v1/portal/account/student/signIn'
             , body
         )
         .then((response) => {
@@ -47,7 +47,8 @@ class Login extends Component {
                     alert('로그인에 실패하였습니다.');
                     this.props.history.push('/signIn');
                 } else {
-                    window.location.href = 'https://www.naver.com/';
+                    console.log('login success');
+                    window.location.href = 'http://localhost:8080/Main_page?user_id='+ response.data['name'];
                 }
             } 
         });
