@@ -1,0 +1,23 @@
+
+> core-js@2.6.8 postinstall C:\Users\geonyeongkim\Desktop\geonyeong\portal-front\node_modules\@babel\runtime-corejs2\node_modules\core-js
+> node -e "try { require('./scripts/postinstall'); } catch (e) { /* empty */ }"
+
+[96mThank you for using core-js ([94m https://github.com/zloirock/core-js [96m)![0m
+
+[96mPlease consider supporting of core-js on Open Collective or Patreon: [0m
+[96m>[94m https://opencollective.com/core-js [0m
+[96m>[94m https://www.patreon.com/zloirock [0m
+
+[96mAlso, the author of core-js ([94m https://github.com/zloirock [96m) is looking for a good job -)[0m
+
+
+> uglifyjs-webpack-plugin@0.4.6 postinstall C:\Users\geonyeongkim\Desktop\geonyeong\portal-front\node_modules\uglifyjs-webpack-plugin
+> node lib/post_install.js
+
++ moment@2.24.0
++ react@16.8.6
++ react-dom@16.8.6
++ react-dates@20.2.2
+added 1455 packages from 896 contributors and audited 15669 packages in 142.279s
+found 328 vulnerabilities (28 low, 284 moderate, 16 high)
+  run `npm audit fix` to fix them, or `npm audit` for details
