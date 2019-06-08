@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, CardBody, Row, Col, Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Dropdown, DropdownItem, DropdownToggle, DropdownMenu, Card, CardBody, Row, Col, Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 class SigninForm extends Component {
 
@@ -7,36 +7,32 @@ class SigninForm extends Component {
         super(props);
         this.state = {
             id: "",
-            password: ""
+            password: "",
+            accountType : "PROFESSOR",
+            dropdownOpen: false
         };
+    }
+
+    toggle = () => {
+        this.setState(prevState => ({
+            dropdownOpen: !prevState.dropdownOpen
+        }));
     }
 
     toSignUp = () => {
         this.props.toSignUp();
     }
 
-    toFindId = () => {
-        this.props.toFindId();
-    }
-
-    toFindPassword = () => {
-        this.props.toFindPassword();
-    }
-
-    handleChange = (e) => {
-        var stateField = e.target.name;
-        if (stateField === "id") {
-            this.setState({
-                id: e.target.value
-            })
-        } else if (stateField === "password") {
-            this.setState({
-                password: e.target.value
-            })
+    signIn = () => {
+        if(this.state.accountType === 'PROFESSOR') {
+            this.props.professorSignIn(this.state);
+        } else {
+            this.props.studentSignIn(this.state);
         }
     }
 
     render() {
+        const dropToggleValue = (this.state.accountType === 'PROFESSOR')? '교수' : '학생';
         return (
             <center>
                 <div className="main-wrap">
@@ -44,24 +40,31 @@ class SigninForm extends Component {
                         <Row>
                             <Col sm="6">
                                 <Card body>
-                                    <h1 style={{ color: "orange", marginTop: "3%" }}>Stack Overflow</h1>
+                                    <h1 style={{ color: "#1abc9c", marginTop: "3%" }}>로그인</h1>
                                     <Form style={{ marginTop: "3%" }}>
                                         <FormGroup>
                                             <Label style={{ paddingRight: "90%" }} for="id">Id</Label>
-                                            <Input onChange={this.handleChange} style={{ width: "95%" }} type="id" name="id" placeholder="id 입력" />
+                                            <Input onChange={(e) => {this.setState({id:e.target.value})}} style={{ width: "95%" }} type="id" name="id" placeholder="id 입력" />
                                         </FormGroup>
                                         <FormGroup>
                                             <Label style={{ paddingRight: "80%" }} for="password">Password</Label>
-                                            <Input onChange={this.handleChange} style={{ width: "95%" }} type="password" name="password" placeholder="Password 입력" />
+                                            <Input onChange={(e) => {this.setState({password:e.target.value})}} style={{ width: "95%" }} type="password" name="password" placeholder="Password 입력" />
                                         </FormGroup>
+                                        <div style={{marginTop:"6%"}}>
+                                        <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+                                            <DropdownToggle caret>
+                                                {dropToggleValue}
+                                            </DropdownToggle>
+                                            <DropdownMenu>
+                                            <DropdownItem><div onClick={() => this.setState({accountType:'PROFESSOR'})}>교수</div></DropdownItem>
+                                                <DropdownItem><div onClick={() => this.setState({accountType:'STUDENT'})}>학생</div></DropdownItem>
+                                            </DropdownMenu>
+                                        </Dropdown >
+                                        </div>
                                     </Form>
-                                    <Button onClick={() => { this.props.signIn(this.state) }} style={{ backgroundColor: "#42A5F5", color: "white", marginTop: "3%", width: "95%", fontSize: "250%" }}>로그인</Button>
+                                    <Button onClick={this.signIn} style={{ backgroundColor: "#42A5F5", color: "white", marginTop: "6%", width: "95%", fontSize: "250%" }}>로그인</Button>
                                     <hr />
                                     <CardBody style={{ color: "#78909C" }}>
-                                        <Label onClick={this.toFindId} style={{ cursor: "pointer", marginLeft: "2%" }}>id 찾기</Label>
-                                        <Label style={{ marginLeft: "2%" }}>|</Label>
-                                        <Label onClick={this.toFindPassword} style={{ cursor: "pointer", marginLeft: "2%" }}>pw 찾기</Label>
-                                        <Label style={{ marginLeft: "2%" }}>|</Label>
                                         <Label onClick={this.toSignUp} style={{ cursor: "pointer", marginLeft: "2%" }}>회원가입</Label>
                                     </CardBody>
                                 </Card>

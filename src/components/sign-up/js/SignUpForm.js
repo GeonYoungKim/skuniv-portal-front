@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { Card, CardBody, Row, Col, Button, Form, FormGroup, Label, Input} from 'reactstrap';
+import {Dropdown, DropdownItem, DropdownToggle, DropdownMenu, Card, Row, Col, Button, Form, FormGroup, Label, Input} from 'reactstrap';
+import NumberFormat from 'react-number-format';
+
 
 class SignUpForm extends Component {
     constructor(props) {
@@ -7,43 +9,43 @@ class SignUpForm extends Component {
         this.state = {
             id:"",
             password:"",
-            displayName:"",
-            aboutMe:"",
-            age: "",
-            email:""
+            name:"",
+            phone:"",
+            email:"",
+            accountType : "PROFESSOR",
+            dropdownOpen: false
         };
     }
 
-    handleChange = (e) => {
-        var stateField = e.target.name;
-        if(stateField === "id") {
-            this.setState({
-                id: e.target.value
-            })
-        } else if(stateField === "displayName") {
-            this.setState({ 
-                displayName: e.target.value
-            })
-        } else if(stateField === "password") {
-            this.setState({
-                password: e.target.value
-            })
-        } else if(stateField === "age") {
-            this.setState({
-                age: e.target.value
-            })
-        } else if(stateField === "aboutMe") {
-            this.setState({
-                aboutMe: e.target.value
-            })
-        } else if(stateField === "email") {
-            this.setState({
-                email: e.target.value
-            })
+    toggle = () => {
+        this.setState(prevState => ({
+            dropdownOpen: !prevState.dropdownOpen
+        }));
+    }
+
+    signUp = () => {
+        const phoneRegex = /^\(?([0-9]{3})\)?-([0-9]{4})-([0-9]{4})$/;
+        const emailRegex = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
+        
+        const isValidPhone = this.state.phone.match(phoneRegex);
+        const isValidEmail = this.state.email.match(emailRegex);
+        const isValidId = this.state.id !== '';
+        const isValidPassword = this.state.password !== '';
+        const isValidName = this.state.name !== '';
+
+        if(isValidPhone && isValidEmail && isValidId && isValidName && isValidPassword) {
+            if(this.state.accountType === 'PROFESSOR') {
+                this.props.professorSignUp(this.state);
+            } else {
+                this.props.studentSignUp(this.state);
+            }
+        } else {
+            alert('형식이 잘못되었습니다.')
         }
     }
     
     render() {
+        const dropToggleValue = (this.state.accountType === 'PROFESSOR')? '교수' : '학생';
         
         return ( 
             <center>
@@ -52,34 +54,41 @@ class SignUpForm extends Component {
                         <Row>
                             <Col sm="6">
                                 <Card body>
-                                    <h1 style={{ color: "orange", marginTop:"3%" }}>Sign Up</h1>
+                                    <h1 style={{ color: "#1abc9c", marginTop:"3%" }}>회원가입</h1>
                                     <Form style={{marginTop:"3%"}}>
                                         <FormGroup>
                                             <Label style={{paddingRight:"90%"}}for="id">Id</Label>
-                                            <Input onChange={this.handleChange} style={{width:"95%"}} type="id" name="id" placeholder="id 입력" />
+                                            <Input onChange={(e) => {this.setState({id:e.target.value})}} style={{width:"95%"}} type="id" name="id" placeholder="id 입력" />
                                         </FormGroup>
                                         <FormGroup>
                                             <Label style={{paddingRight:"80%"}} for="password">Password</Label>
-                                            <Input onChange={this.handleChange} style={{width:"95%"}} type="password" name="password" placeholder="password 입력" />
+                                            <Input onChange={(e) => {this.setState({password:e.target.value})}} style={{width:"95%"}} type="password" name="password" placeholder="password 입력" />
                                         </FormGroup>
                                         <FormGroup>
-                                            <Label style={{paddingRight:"75%"}} for="displayName">DisplayName</Label>
-                                            <Input onChange={this.handleChange} style={{width:"95%"}} type="displayName" name="displayName" placeholder="이름" />
+                                            <Label style={{paddingRight:"85%"}} >Name</Label>
+                                            <Input onChange={(e) => {this.setState({name:e.target.value})}} style={{width:"95%"}} type="name" name="name" placeholder="이름 입력" />
+                                        </FormGroup>
+                                        <FormGroup>
+                                            <Label style={{paddingRight:"85%"}} >Phone</Label>
+                                            <Input onChange={(e) => {this.setState({phone:e.target.value})}} style={{width:"95%"}} type="phone" name="phone" placeholder="010-1111-1111" />
                                         </FormGroup>
                                         <FormGroup>
                                             <Label style={{paddingRight:"86%"}} for="email">Email</Label>
-                                            <Input onChange={this.handleChange} style={{width:"95%"}} type="email" name="email" placeholder="Email 입력" />
+                                            <Input onChange={(e) => {this.setState({email:e.target.value})}} style={{width:"95%"}} type="email" name="email" placeholder="Email 입력" />
                                         </FormGroup>
-                                        <FormGroup>
-                                            <Label style={{paddingRight:"81%"}} for="pw">AboutMe</Label>
-                                            <Input onChange={this.handleChange} style={{width:"95%"}} type="aboutMe" name="aboutMe" placeholder="자기소개 입력" />
-                                        </FormGroup>
-                                        <FormGroup>
-                                            <Label style={{paddingRight:"88%"}} for="pw">Age</Label>
-                                            <Input onChange={this.handleChange} style={{width:"95%"}} type="number" name="age" placeholder="나이 입력" />
-                                        </FormGroup>
+                                        <div style={{marginTop:"6%"}}>
+                                        <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+                                            <DropdownToggle caret>
+                                                {dropToggleValue}
+                                            </DropdownToggle>
+                                            <DropdownMenu>
+                                                <DropdownItem><div onClick={() => this.setState({accountType:'PROFESSOR'})}>교수</div></DropdownItem>
+                                                <DropdownItem><div onClick={() => this.setState({accountType:'STUDENT'})}>학생</div></DropdownItem>
+                                            </DropdownMenu>
+                                        </Dropdown >
+                                        </div>
                                     </Form>
-                                    <Button onClick={() => {this.props.signUp(this.state)}} style={{backgroundColor: "#42A5F5", color: "white", marginTop:"3%", marginBottom:"7%" , width:"95%", fontSize:"250%"}}>회원가입</Button>
+                                    <Button onClick={() => {this.signUp()}} style={{backgroundColor: "#42A5F5", color: "white", marginTop:"3%", marginBottom:"7%" , width:"95%", fontSize:"250%"}}>회원가입</Button>
                                 </Card>
                             </Col>
                         </Row>

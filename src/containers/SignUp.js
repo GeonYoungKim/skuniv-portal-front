@@ -4,10 +4,11 @@ import axios from 'axios';
 
 class SignUp extends Component {
     
-    signUp = (body) => {
+    professorSignUp = (body) => {
+        console.log(body);
         axios
             .post(
-                'http://localhost:8080/api/v1/kaggle/stackoverflow/account'
+                'http://localhost:8080/api/v1/portal/account/professor/signUp'
                 , body
             )
             .then((response) => {
@@ -18,12 +19,27 @@ class SignUp extends Component {
             });
     }
 
+    studentSignUp = (body) => {
+        console.log(body);
+        // axios
+        //     .post(
+        //         'http://localhost:8080/api/v1/portal/account/student/signUp'
+        //         , body
+        //     )
+        //     .then((response) => {
+        //         if (response.status === 200) {
+        //             console.log(response.data)
+        //             this.props.history.push('/signIn')
+        //         }
+        //     });
+    }
+
 
     render() {
 
         return (
             <main>
-                <SignUpForm signUp={this.signUp} />
+                <SignUpForm professorSignUp={this.professorSignUp} studentSignUp={this.studentSignUp}/>
             </main>
         );
     }

@@ -5,21 +5,25 @@ import {
   Switch
 } from 'react-router-dom';
 import 'react-dates/initialize';
-
 import ProfessorLecture from './containers/ProfessorLecture';
-<<<<<<< HEAD
+import LectureDetail from './containers/LectureDetail';
+import SignIn from './containers/SignIn';
+import SignUp from './containers/SignUp';
+import Assignment from './containers/Assignment';
+import AssignmentStudent from './containers/AssignmentStudent';
 
-=======
-import ProfessorLectureDetail from './containers/ProfessorLectureDetail';
->>>>>>> 9e21b3141fc5d4f59d3befa54b29bd2553bd454a
 class App extends Component {
   render() {
     return (
       <Router>
-        <div className="layout ">
+        <div className="layout">
           <Switch>
+            <Route path="/signIn" component={SignIn}/>
+            <Route path="/signUp" component={SignUp}/>
             <Route path="/professor/lecture" component={ProfessorLecture}/>
-            <Route path="/professor/lecture/:lectureId?/detail" component={ProfessorLectureDetail}/>
+            <Route path="/lecture/detail/:lectureId?" component={LectureDetail}/>
+            <Route path="/lecture/assignment/:lectureId?/:lectureName?" component={Assignment}/>
+            <Route path="/lecture/assignment-student/:assignmentId?/:assignmentName?" component={AssignmentStudent}/>
           </Switch>
         </div>
       </Router>

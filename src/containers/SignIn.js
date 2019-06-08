@@ -10,42 +10,45 @@ class Login extends Component {
         };
     }
 
-    signIn = (body) => {
+    professorSignIn = (body) => {
+        console.log(body);
         axios
         .post(
-            'http://localhost:8080/api/v1/kaggle/stackoverflow/account/signIn'
+            'http://localhost:8080/api/v1/portal/account/professor/signIn'
             , body
         )
         .then((response) => {
             if (response.status === 200) {
                 console.log(response.data)
-                if(response.data['status'] === 80803) {
+                if(response.data['status'] === 80801) {
+                    alert('로그인에 실패하였습니다.');
                     this.props.history.push('/signIn');
                 } else {
-                    localStorage.token = response.data['token'];
-                    this.props.history.goBack();
+                    localStorage.Token = response.data['token'];
+                    localStorage.AccountType = response.data['accountType'];
+                    localStorage.Name = response.data['name'];
+                    this.props.history.push('/professor/lecture');
                 }
             } 
         });
+    }
+
+    studentSignIn = (body) => {
+        console.log(body);
     }
 
     toSignUp = () => {
         this.props.history.push('/signUp');
     }
 
-    toFindId = () => {
-        this.props.history.push('/findId');
-    }
-
-    toFindPassword = () => {
-        this.props.history.push('/findPassword');
-    }
-
     render() {
       
         return (
             <main>
-                <SignInForm toSignUp={this.toSignUp} toFindId={this.toFindId} toFindPassword={this.toFindPassword} signIn={this.signIn}/>
+                <SignInForm toSignUp={this.toSignUp} 
+                    professorSignIn={this.professorSignIn}
+                    studentSignIn={this.studentSignIn}
+                />
             </main>
         );
     }
