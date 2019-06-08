@@ -21,17 +21,17 @@ class SignUp extends Component {
 
     studentSignUp = (body) => {
         console.log(body);
-        // axios
-        //     .post(
-        //         'http://localhost:8080/api/v1/portal/account/student/signUp'
-        //         , body
-        //     )
-        //     .then((response) => {
-        //         if (response.status === 200) {
-        //             console.log(response.data)
-        //             this.props.history.push('/signIn')
-        //         }
-        //     });
+        axios
+            .post(
+                'http://localhost:8080/api/v1/portal/account/student/signUp'
+                , body
+            )
+            .then((response) => {
+                if (response.status === 200) {
+                    console.log(response.data)
+                    this.props.history.push('/signIn')
+                }
+            });
     }
 
 

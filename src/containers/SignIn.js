@@ -35,6 +35,22 @@ class Login extends Component {
 
     studentSignIn = (body) => {
         console.log(body);
+        axios
+        .post(
+            'http://localhost:8080/api/v1/portal/account/student/signIn'
+            , body
+        )
+        .then((response) => {
+            if (response.status === 200) {
+                console.log(response.data)
+                if(response.data['status'] === 80801) {
+                    alert('로그인에 실패하였습니다.');
+                    this.props.history.push('/signIn');
+                } else {
+                    window.location.href = 'https://www.naver.com/';
+                }
+            } 
+        });
     }
 
     toSignUp = () => {

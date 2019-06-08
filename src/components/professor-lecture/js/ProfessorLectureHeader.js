@@ -10,6 +10,7 @@ class ProfessorLectureHeader extends Component {
             dayDropdownOpen: false,
             semesterId: 1,
             showModal: false,
+            lectureDayShowModal: false,
             name: "",
             score: "",
             lectureTime: "",
@@ -121,6 +122,9 @@ class ProfessorLectureHeader extends Component {
                                     <Input onChange={(e) => { this.setState({ score: e.target.value }) }} type="number" style={{ width: "95%" }} placeholder="강좌 이수 학점 입력" />
                                 </FormGroup>
                                 <FormGroup>
+                                    <Button onClick={() => {this.setState({})}}>추가</Button>
+                                </FormGroup>
+                                {/* <FormGroup>
                                     <Label style={{ paddingRight: "85%" }} >Day</Label>
                                     <Input style={{ width: "95%" }} placeholder="요일 선택" value={this.state.lectureDay} />
                                     <div style={{ marginTop: "3%" }}>
@@ -131,7 +135,7 @@ class ProfessorLectureHeader extends Component {
                                             {dayOfWeekDropMenuScreen}
                                         </Dropdown >
                                     </div>
-                                </FormGroup>
+                                </FormGroup> */}
                             </Form>
                             <Button onClick={this.createLecture} style={{ backgroundColor: "#42A5F5", color: "white", marginTop: "10%", width: "95%", fontSize: "250%", cursor: "pointer" }}>추가</Button>
                         </Modal>

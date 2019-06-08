@@ -35,8 +35,10 @@ class SignUpForm extends Component {
 
         if(isValidPhone && isValidEmail && isValidId && isValidName && isValidPassword) {
             if(this.state.accountType === 'PROFESSOR') {
+                console.log('professor')
                 this.props.professorSignUp(this.state);
             } else {
+                console.log('student')
                 this.props.studentSignUp(this.state);
             }
         } else {
