@@ -90,7 +90,7 @@ class SignUpForm extends Component {
                                         </Dropdown >
                                         </div>
                                     </Form>
-                                    <Button onClick={() => {this.signUp()}} style={{backgroundColor: "#42A5F5", color: "white", marginTop:"3%", marginBottom:"7%" , width:"95%", fontSize:"250%"}}>회원가입</Button>
+                                    <Button onClick={() => {this.signUp()}} style={{backgroundColor: "#42A5F5", color: "white", marginTop:"3%", marginBottom:"7%" , width:"95%", fontSize:"250%", cursor:"pointer"}}>회원가입</Button>
                                 </Card>
                             </Col>
                         </Row>

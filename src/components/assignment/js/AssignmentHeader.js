@@ -90,6 +90,7 @@ class AssignmentHeader extends Component {
                                 </FormGroup>
                             </Form>
                             <Button onClick={() => { this.setState({showModal: false}); this.props.createAssignment(this.state) }} style={{ backgroundColor: "#42A5F5", color: "white", marginTop: "10%", width: "95%", fontSize: "250%", cursor: "pointer" }}>추가</Button>
+                            <center><Button onClick={() => {this.setState({showModal: false})}} style={{marginTop: "3%", width: "20%", fontSize: "100%", cursor: "pointer"}}>취소</Button></center>
                         </Modal>
                         <Button onClick={() => { this.setState({ showModal: true }) }} style={{ marginLeft: "65%", cursor: "pointer", backgroundColor: "white" }}>과제 추가</Button>
                     </div>

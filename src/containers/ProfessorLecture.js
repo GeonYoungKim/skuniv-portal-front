@@ -61,6 +61,10 @@ class ProfessorLecture extends Component {
     }
 
     createLecture(semesterId, body) {
+        let lectureDayJson = JSON.stringify(body['lectureDayList']);
+        body['lectureDay'] = lectureDayJson
+        console.log(body)
+
         axios
             .post(
                 'http://localhost:9090/api/v1/portal/professor/semester/' + semesterId + '/lecture'
@@ -76,7 +80,6 @@ class ProfessorLecture extends Component {
             .then((response) => {
                 if (response.status === 200) {
                     window.location.reload();
-
                 }
             });
     }
